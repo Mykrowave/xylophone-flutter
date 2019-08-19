@@ -18,6 +18,7 @@ class XylophoneApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: _buildXylophoneKeyNotes(),
         ),
@@ -30,18 +31,19 @@ class XylophoneApp extends StatelessWidget {
 
     _audioNotes.forEach(
       (an) => allNotes.add(
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 8.0),
-          width: 100.0,
-          color: an.color,
-          child: XylophoneKey(
-            note: an.assetnote,
+        Expanded(
+          child: Container(
+            color: an.color,
+            child: XylophoneKey(
+              note: an.assetnote,
+            ),
           ),
         ),
       ),
     );
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: allNotes,
     );
   }
