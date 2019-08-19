@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
-
-  final List<String> _AudioNotes = [
+  final List<String> _audioNotes = [
     'note1.wav',
     'note2.wav',
     'note3.wav',
@@ -20,14 +19,29 @@ class XylophoneApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
-            child: Column(
-          children: <Widget>[
-            XylophoneKey(
-              note: 'note1.wav',
-            )
-          ],
-        )),
+          child: _buildXylophoneKeyNotes(),
+        ),
       ),
+    );
+  }
+
+  Widget _buildXylophoneKeyNotes() {
+    List<Widget> allNotes = new List<Widget>();
+
+    _audioNotes.forEach(
+      (an) => allNotes.add(
+        Container(
+          width: 100.0,
+          color: Colors.green,
+          child: XylophoneKey(
+            note: an,
+          ),
+        ),
+      ),
+    );
+
+    return Column(
+      children: allNotes,
     );
   }
 }
@@ -35,7 +49,7 @@ class XylophoneApp extends StatelessWidget {
 class XylophoneKey extends StatelessWidget {
   final String note;
 
-  XylophoneKey({Key key, @required this.note}) : super(key: key);
+  const XylophoneKey({Key key, @required this.note}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
