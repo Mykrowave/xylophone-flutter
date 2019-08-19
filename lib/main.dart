@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
-  final List<String> _audioNotes = [
-    'note1.wav',
-    'note2.wav',
-    'note3.wav',
-    'note4.wav',
-    'note5.wav',
-    'note6.wav',
-    'note7.wav',
+  final List<XylophoneKeyAsset> _audioNotes = [
+    XylophoneKeyAsset(assetnote: 'note1.wav', color: Colors.red),
+    XylophoneKeyAsset(assetnote: 'note2.wav', color: Colors.orange),
+    XylophoneKeyAsset(assetnote: 'note3.wav', color: Colors.yellow),
+    XylophoneKeyAsset(assetnote: 'note4.wav', color: Colors.green),
+    XylophoneKeyAsset(assetnote: 'note5.wav', color: Colors.teal),
+    XylophoneKeyAsset(assetnote: 'note6.wav', color: Colors.blue),
+    XylophoneKeyAsset(assetnote: 'note7.wav', color: Colors.purple),
   ];
 
   @override
@@ -31,10 +31,11 @@ class XylophoneApp extends StatelessWidget {
     _audioNotes.forEach(
       (an) => allNotes.add(
         Container(
+          margin: EdgeInsets.symmetric(vertical: 8.0),
           width: 100.0,
-          color: Colors.green,
+          color: an.color,
           child: XylophoneKey(
-            note: an,
+            note: an.assetnote,
           ),
         ),
       ),
@@ -63,4 +64,11 @@ class XylophoneKey extends StatelessWidget {
       ),
     );
   }
+}
+
+class XylophoneKeyAsset {
+  final Color color;
+  final String assetnote;
+
+  const XylophoneKeyAsset({this.assetnote, this.color});
 }
